@@ -38,3 +38,5 @@ share/python-wheels/
 .ipynb_checkpoints
 
 .DS_Store
+.html
+.pdf
