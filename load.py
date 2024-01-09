@@ -4,8 +4,13 @@ import mistune
 
 def validate_options(options):
     if not options.filename:
-        print('Filename is required')
+        print('Input filename is required')
         return False
+
+    if not options.output:
+        print('Output file path is required')
+        return False
+
     return True
 
 def render_chat_block(message):
@@ -57,10 +62,15 @@ def main(options, args):
     json_data = json.loads(file.read())
     file.close()
 
-    print(render_chat_page(json_data))
+    rendered_html = render_chat_page(json_data)
+    output_file = open(options.output, 'w')
+    output_file.write(rendered_html)
+    output_file.close()
+
 
 if __name__ == '__main__':
     parser = optparse.OptionParser()
     parser.add_option('-f', '--file', dest='filename', help='read data from FILENAME')
+    parser.add_option('-o', '--output', dest='output', help='write data to OUTPUT')
     (options, args) = parser.parse_args()
     main(options, args)
