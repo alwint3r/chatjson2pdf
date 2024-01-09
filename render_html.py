@@ -2,6 +2,7 @@ import optparse
 import json
 import mistune
 
+
 def validate_options(options):
     if not options.filename:
         print('Input filename is required')
@@ -13,10 +14,11 @@ def validate_options(options):
 
     return True
 
+
 def render_chat_block(message):
     role = message['role']
     content = message['content']
-    
+
     formatted_role = role[0].upper() + role[1:]
 
     html_content = f"""
@@ -27,6 +29,7 @@ def render_chat_block(message):
     """
 
     return html_content
+
 
 def render_chat_page(messages):
     renderd_blocks = [render_chat_block(message) for message in messages]
@@ -54,6 +57,7 @@ def render_chat_page(messages):
 
     return parent_content
 
+
 def main(options, args):
     if not validate_options(options):
         return
@@ -70,7 +74,9 @@ def main(options, args):
 
 if __name__ == '__main__':
     parser = optparse.OptionParser()
-    parser.add_option('-f', '--file', dest='filename', help='read data from FILENAME')
-    parser.add_option('-o', '--output', dest='output', help='write data to OUTPUT')
+    parser.add_option('-f', '--file', dest='filename',
+                      help='read data from FILENAME')
+    parser.add_option('-o', '--output', dest='output',
+                      help='write data to OUTPUT')
     (options, args) = parser.parse_args()
     main(options, args)
