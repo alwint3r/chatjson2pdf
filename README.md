@@ -1,10 +1,16 @@
 # Render JSON of Chat History to PDF
 
+Supported format:
+```json
+[
+    {"role": "user", "content": "Hello"},
+    {"role": "assistant", "content": "Hi, how can I help you?"}
+]
+```
+
 ## Pre-requisites
 
 ### Install Requirements
-
-_As of now, the requirements.txt may include unnecessary packages. I will clean this up later._
 
 ```bash
 pip3 install mistune xhtml2pdf
@@ -15,12 +21,12 @@ pip3 install mistune xhtml2pdf
 
 ### Rendering Chat JSON to HTML
 
-```
+```bash
 python3 render_html.py -f <path/to/chat.json> -o <path/to/output.html>
 ```
 
 Then
 
-```
+```bash
 python3 render_pdf.py -f <path/to/output.html> -o <path/to/output.pdf>
 ```
